@@ -12,27 +12,31 @@ import CoreData
 struct ContentView: View {
     
     init() {
+        //set navigation bar transparent
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         UINavigationBar.appearance().shadowImage = UIImage()
     }
     
     var body: some View {
         NavigationView {
-            //Display Folder View
+            //display folder view as intial screen
             FoldersView()
         }.accentColor(Color.pink)
     }
 }
 
 struct FoldersView: View {
-    //New folder alert box
+    
     @State var isNewFolderAlertShowing = false
+    //create variable for new folder name
     @State private var newFolderName: String = ""
+    //create variable to know new folder alert if empty
     @State private var showingEmptyNameAlert = false
     
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: Folders.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Folders.displayOrder, ascending: false)]) var folders: FetchedResults<Folders>
     
+    //fetching record from folder entity
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Folders")
     
     var body: some View {
@@ -41,16 +45,20 @@ struct FoldersView: View {
             List {
                 Section(header: Text("New Folder").font(.subheadline).bold()) {
                     HStack {
+                        //set textfield for new folder
                         TextField("Name", text: $newFolderName)
                         Button(action: {
                             
                             if (self.newFolderName.isEmpty) {
+                                //show alert if new folder textfield is empty
                                 self.showingEmptyNameAlert = true
                             } else {
+                                //get current date
                                 let getDate = getCurrentDate()
                                 let formatter = DateFormatter()
                                 formatter.dateFormat = "d MMM y"
                                 let changedDate = formatter.date(from: getDate)
+                                //insert values into database
                                 let folderContext = Folders(context: self.moc)
                                 folderContext.id = UUID()
                                 folderContext.name = "\(self.newFolderName)"
@@ -62,6 +70,7 @@ struct FoldersView: View {
                         }) {
                             Image(systemName: "plus.circle.fill").foregroundColor(Color.pink).imageScale(.large)
                         }.alert(isPresented: $showingEmptyNameAlert) {
+                            //display alert view if empty
                             Alert(title: Text("Alert"), message: Text("Please enter new folder name."), dismissButton: .default(Text("OK")))
                         }                    }
                 }
@@ -79,6 +88,7 @@ struct FoldersView: View {
                         //Delete item function
                         .onDelete{ (indexSet) in
                             for offset in indexSet {
+                                //delete row from list view
                                 let folder = self.folders[offset]
                                 self.moc.delete(folder)
                             }
@@ -93,6 +103,7 @@ struct FoldersView: View {
     }
 }
 
+//function to get current date
 func getCurrentDate() -> String {
     let today = Date()
     let formatter = DateFormatter()
@@ -101,6 +112,7 @@ func getCurrentDate() -> String {
     return date
 }
 
+//function to update record
 func updateRecord(from: Int,to: Int) {
     let fromSlot = from
     let toSlot = to
@@ -198,6 +210,7 @@ struct TestingFilesView: View {
     }
 }
 
+//change date to string
 func changeDateToString(adate: Date) -> String {
         let adate =  adate
         //let date = Date()
@@ -207,13 +220,13 @@ func changeDateToString(adate: Date) -> String {
         return result
 }
 
+//function to change value from string to int
 func stringToInt(input: String) -> Int {
     let getInput = Int(input) ?? 1
     return getInput
 }
 
 //Details Screen View
-
 struct DetailsView: View {
     
     @State var getFileTitle = ""
@@ -232,7 +245,7 @@ struct DetailsView: View {
     var body: some View {
         
         VStack {
-            
+            //set textfield for title
             TextField("Title", text: $getFileTitle).font(.title).padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
             Spacer()
             TextViewTypedTesting(text: $text, stateMenuBtn: $showHideMenuButton, stateSaveBtn: $showHideSaveButton)
@@ -311,6 +324,7 @@ struct DetailsView: View {
     }
 }
 
+//update data from editing view
 func updateDetailData(aTitle: String, aDesc: String, aDate:Date, aDisplayOrder: String) {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
     let managedContext = appDelegate.persistentContainer.viewContext
@@ -333,8 +347,7 @@ func updateDetailData(aTitle: String, aDesc: String, aDate:Date, aDisplayOrder: 
     }
 }
 
-
-
+//delete data from editing view
 func deleteDetailData(aDisplayOrder: String) {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
     let managedContext = appDelegate.persistentContainer.viewContext
@@ -363,50 +376,6 @@ func customApperance() {
     navBarAppearance.configureWithOpaqueBackground()
     
     navBarAppearance.configureWithDefaultBackground()
-}
-
-struct TextViewTyped: UIViewRepresentable {
-    @Binding var text: String
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-    
-    func makeUIView(context: Context) -> UITextView {
-        
-        let myTextView = UITextView()
-        myTextView.delegate = context.coordinator
-        
-        myTextView.font = UIFont(name: "HelveticaNeue", size: 15)
-        myTextView.isScrollEnabled = true
-        myTextView.isEditable = true
-        myTextView.isUserInteractionEnabled = true
-        myTextView.backgroundColor = UIColor(white: 0.0, alpha: 0.05)
-        
-        return myTextView
-    }
-    
-    func updateUIView(_ uiView: UITextView, context: Context) {
-        uiView.text = text
-    }
-    
-    class Coordinator : NSObject, UITextViewDelegate {
-        
-        var parent: TextViewTyped
-        
-        init(_ uiTextView: TextViewTyped) {
-            self.parent = uiTextView
-        }
-        
-        func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-            return true
-        }
-        
-        func textViewDidChange(_ textView: UITextView) {
-            //print("text now: \(String(describing: textView.text!))")
-            self.parent.text = textView.text
-        }
-    }
 }
 
 //custom textfield code
