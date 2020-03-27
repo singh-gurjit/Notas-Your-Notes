@@ -95,10 +95,10 @@ struct FoldersView: View {
                             try? self.moc.save()
                     }
                 }
-                }
+            }
             .navigationBarItems(trailing: EditButton()).font(.headline)
             .navigationBarTitle("Folders")
-        
+            
         }
     }
 }
@@ -170,7 +170,7 @@ struct TestingFilesView: View {
         VStack(alignment: .trailing) {
             List {
                 ForEach(filesRecord.filter { return $0.folderId == stringToInt(input: itemId) },id: \.self) { file in
-                   
+                    
                     NavigationLink(destination: DetailsView(getFileTitle: file.title ?? "Unknown", folderId: self.itemId, text: file.descrip ?? "Unknown", category: "Edit",fileId: String(file.displayOrder))) {
                         VStack(alignment: .leading) {
                             HStack {
@@ -212,12 +212,12 @@ struct TestingFilesView: View {
 
 //change date to string
 func changeDateToString(adate: Date) -> String {
-        let adate =  adate
-        //let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "d MMM y"
-        let result = formatter.string(from: adate)
-        return result
+    let adate =  adate
+    //let date = Date()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "d MMM y"
+    let result = formatter.string(from: adate)
+    return result
 }
 
 //function to change value from string to int
@@ -432,7 +432,7 @@ struct TextViewTypedTesting: UIViewRepresentable {
         func textViewDidBeginEditing(_ textView: UITextView) {
             if textView.textColor == UIColor.lightGray {
                 if textView.text.contains("Write your text here...") {
-                   textView.text = nil
+                    textView.text = nil
                 }
                 textView.textColor = UIColor.black
             }
