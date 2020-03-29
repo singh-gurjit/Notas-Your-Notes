@@ -18,7 +18,7 @@
 
 /* Begin PBXFileReference section */
 		E2A434B9241B970400AE6030 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		E2D3CBAD2417F63200C320BF /* Notas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notas.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2D3CBAD2417F63200C320BF /* Notas - Your Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Notas - Your Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2D3CBB02417F63200C320BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2D3CBB22417F63200C320BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E2D3CBB52417F63200C320BF /* Notas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notas.xcdatamodel; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		E2D3CBAE2417F63200C320BF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E2D3CBAD2417F63200C320BF /* Notas.app */,
+				E2D3CBAD2417F63200C320BF /* Notas - Your Notes.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,9 +81,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E2D3CBAC2417F63200C320BF /* Notas */ = {
+		E2D3CBAC2417F63200C320BF /* Notas - Your Notes */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E2D3CBC42417F63400C320BF /* Build configuration list for PBXNativeTarget "Notas" */;
+			buildConfigurationList = E2D3CBC42417F63400C320BF /* Build configuration list for PBXNativeTarget "Notas - Your Notes" */;
 			buildPhases = (
 				E2D3CBA92417F63200C320BF /* Sources */,
 				E2D3CBAA2417F63200C320BF /* Frameworks */,
@@ -93,9 +93,9 @@
 			);
 			dependencies = (
 			);
-			name = Notas;
+			name = "Notas - Your Notes";
 			productName = Notas;
-			productReference = E2D3CBAD2417F63200C320BF /* Notas.app */;
+			productReference = E2D3CBAD2417F63200C320BF /* Notas - Your Notes.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -113,7 +113,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E2D3CBA82417F63200C320BF /* Build configuration list for PBXProject "Notas" */;
+			buildConfigurationList = E2D3CBA82417F63200C320BF /* Build configuration list for PBXProject "Notas - Your Notes" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -126,7 +126,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E2D3CBAC2417F63200C320BF /* Notas */,
+				E2D3CBAC2417F63200C320BF /* Notas - Your Notes */,
 			);
 		};
 /* End PBXProject section */
@@ -287,7 +287,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gurjits.Notas;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Notas - Your Notes";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -307,7 +307,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gurjits.Notas;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Notas - Your Notes";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -316,7 +316,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E2D3CBA82417F63200C320BF /* Build configuration list for PBXProject "Notas" */ = {
+		E2D3CBA82417F63200C320BF /* Build configuration list for PBXProject "Notas - Your Notes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2D3CBC22417F63400C320BF /* Debug */,
@@ -325,7 +325,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2D3CBC42417F63400C320BF /* Build configuration list for PBXNativeTarget "Notas" */ = {
+		E2D3CBC42417F63400C320BF /* Build configuration list for PBXNativeTarget "Notas - Your Notes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2D3CBC52417F63400C320BF /* Debug */,
